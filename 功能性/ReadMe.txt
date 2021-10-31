@@ -1,0 +1,3 @@
+readdata-从excel读取指定行列的数据。注意num的维数，避免索引超过矩阵维度
+qiuzhi-从excel读取指定行列的数据并根据已有的线性模型计算求值
+shopcustomlocation-从excel读数据画了两组坐标的散点图
