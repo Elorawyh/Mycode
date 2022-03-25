@@ -1,0 +1,26 @@
+POST http://localhost/user
+content-type: application/json;charset=utf-8
+accept:dsad
+token:dasdsa
+
+{
+  "username": "zhaoliu",
+  "password": "1234",
+  "name": "赵六",
+  "phone": "13513413335"
+}
+
+###
+DELETE http://localhost/user/7
+
+###
+POST http://localhost/user/update
+Content-Type: application/json
+
+{
+  "username": "zqq",
+  "password": "44444",
+  "name": "赵倩倩",
+  "phone": "123432321",
+  "id": "1"
+}

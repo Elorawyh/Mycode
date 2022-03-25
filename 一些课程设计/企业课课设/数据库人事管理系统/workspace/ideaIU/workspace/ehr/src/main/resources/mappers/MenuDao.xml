@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nuist.ehr.dao.MenuDao">
+
+    <update id="update" parameterType="edu.nuist.ehr.dao.MenuDao">
+        update menus set
+         menu_name = #{menuName}
+        where id = #{id}
+    </update>
+
+    <resultMap id="menuMap" type="edu.nuist.ehr.bean.Menu">
+        <id property="id" column="mid" />
+        <result property="menuName" column="menu_name"/>
+        <result property="url" column="url"/>
+    </resultMap>
+
+    <select id="findList" resultMap="menuMap">
+        SELECT
+        m.id mid,
+        m.menu_name,
+        m.url
+        FROM
+        menus m
+        <where>
+            m.del_flag!='1'
+            <if test="menuName!=null and menuName!=''">
+                and m.menu_name like CONCAT('%',#{menuName},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

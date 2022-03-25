@@ -1,0 +1,15 @@
+[4/5/2021, 16:8:28] === Logging started: 2021/04/05 16:08:28 ===
+[4/5/2021, 16:8:28] Executable: D:\program\steam\Steam\steamapps\common\Steamworks Shared\_CommonRedist\DotNet\4.6\NDP462-KB3151800-x86-x64-AllOS-ENU.exe v4.6.1590.0
+[4/5/2021, 16:8:28] --- logging level: standard ---
+[4/5/2021, 16:8:28] Successfully bound to the ClusApi.dll
+[4/5/2021, 16:8:28] Error 0x800706d9: Failed to open the current cluster
+[4/5/2021, 16:8:28] Cluster drive map: ''
+[4/5/2021, 16:8:28] Considering drive: 'C:\'...
+[4/5/2021, 16:8:28] Considering drive: 'D:\'...
+[4/5/2021, 16:8:28] Drive 'D:\' has been selected as the largest fixed drive
+[4/5/2021, 16:8:28] Directory 'D:\e2843ac2b74f4fd0e3f535\' has been selected for file extraction
+[4/5/2021, 16:8:28] Extracting files to: D:\e2843ac2b74f4fd0e3f535\
+[4/5/2021, 16:8:55] Extraction took 26.953 seconds
+[4/5/2021, 16:8:55] Executing command line: 'D:\e2843ac2b74f4fd0e3f535\\Setup.exe   /q /norestart /x86 /x64 /redist'
+[4/5/2021, 16:9:0] Exiting with result code: 0x0
+[4/5/2021, 16:9:0] === Logging stopped: 2021/04/05 16:09:00 ===

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是用于绑定xml和接口的，namespace的值就是接口的类的全限定名（包名+类名）-->
+<mapper namespace="edu.nuist.ehr.dao.UserDao">
+    <!--id的值就是接口对应的方法名-->
+    <!--parameterType用于指定方法的入参类型，主要要用全限定名-->
+    <update id="update" parameterType="edu.nuist.ehr.dao.UserDao">
+        update users set
+         username = #{username},
+         password = #{password},
+         name = #{name},
+         phone=#{phone}
+        where id = #{id}
+    </update>
+
+    <!--resultMap有唯一属性id，表明自己的身份，想要使用resultmap，就要在sql的标签体中指定resultMap ID-->
+    <!--type属性指定最终将从数据库中查到的数据封装什么类型的java对象-->
+    <resultMap id="userMap" type="edu.nuist.ehr.bean.User">
+        <!--property代表对象的属性名，column代表查询数据库的sql的指定列名-->
+        <id property="id" column="uid"/>
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="name" column="name" />
+        <result property="phone" column="phone" />
+        <result property="createTime" column="create_time" />
+        <!--property对应对象属性名，ofType指定集合存储类型-->
+        <collection property="roleList" ofType="edu.nuist.ehr.bean.Role">
+            <id property="id" column="rid" />
+            <result property="roleName" column="role_name"/>
+            <collection property="menuList" ofType="edu.nuist.ehr.bean.Menu">
+                <id property="id" column="mid"/>
+                <result property="menuName" column="menu_name"/>
+                <result property="url" column="url"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <!--resultMap的值是一个映射规则-->
+    <select id="findById" resultMap="userMap">
+        SELECT
+          u.id uid,
+          u.username,
+          u.password,
+          u.name,
+          u.phone,
+          u.create_time,
+          r.id rid,
+          r.role_name,
+          m.id mid,
+          m.menu_name,
+          m.url
+        FROM
+            users u
+            INNER JOIN user_role ur ON ur.user_id = u.id
+            INNER JOIN roles r ON r.id = ur.role_id
+            LEFT JOIN roles_menus rm on rm.role_id = r.id
+            LEFT JOIN menus m on m.id = rm.menu_id
+        WHERE u.id = #{id}
+    </select>
+
+    <select id="find" resultMap="userMap">
+        SELECT
+          u.id uid,
+          u.username,
+          u.password,
+          u.name,
+          u.phone,
+          u.create_time,
+          r.id rid,
+          r.role_name,
+          m.id mid,
+          m.menu_name,
+          m.url
+        FROM
+            users u
+            INNER JOIN user_role ur ON ur.user_id = u.id
+            INNER JOIN roles r ON r.id = ur.role_id
+            LEFT JOIN roles_menus rm on rm.role_id = r.id
+            LEFT JOIN menus m on m.id = rm.menu_id
+        WHERE u.username=#{username} and u.password=#{password}
+    </select>
+
+    <!--where标签会根据if标签中的判断结果，确定是否拼接sql，并且会自动补上where关键字-->
+    <select id="findList" resultMap="userMap">
+        SELECT
+        u.id uid,
+        u.username,
+        u.password,
+        u.name,
+        u.phone,
+        u.create_time,
+        r.id rid,
+        r.role_name,
+        m.id mid,
+        m.menu_name,
+        m.url
+        FROM
+        users u
+        LEFT JOIN user_role ur ON ur.user_id = u.id
+        LEFT JOIN roles r ON r.id = ur.role_id
+        LEFT JOIN roles_menus rm on rm.role_id = r.id
+        LEFT JOIN menus m on m.id = rm.menu_id
+        <where>
+            u.del_flag!='1'
+            <if test="username!=null and username!=''">
+                and u.username like CONCAT('%',#{username},'%')
+            </if>
+        </where>
+    </select>
+
+
+
+
+    <!--myabtis foreach进行多条数据插入-->
+    <insert id="insertManyUserRole">
+        insert into user_role (user_id,role_id) values
+        <foreach collection="roleList" separator="," item="role">
+            (#{id},#{role.id})
+        </foreach>
+    </insert>
+</mapper>

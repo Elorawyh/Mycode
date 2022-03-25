@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nuist.ehr.dao.RoleDao">
+
+    <update id="update" parameterType="edu.nuist.ehr.dao.RoleDao">
+        update roles set
+         role_name = #{roleName}
+        where id = #{id}
+    </update>
+
+    <resultMap id="roleMap" type="edu.nuist.ehr.bean.Role">
+        <id property="id" column="rid" />
+        <result property="roleName" column="role_name"/>
+        <collection property="menuList" ofType="edu.nuist.ehr.bean.Menu">
+            <id property="id" column="mid"/>
+            <result property="menuName" column="menu_name"/>
+            <result property="url" column="url"/>
+        </collection>
+    </resultMap>
+
+    <select id="findList" resultMap="roleMap">
+        SELECT
+        r.id rid,
+        r.role_name,
+        m.id mid,
+        m.menu_name,
+        m.url
+        FROM
+        roles r
+        LEFT JOIN roles_menus rm on rm.role_id = r.id
+        LEFT JOIN menus m on m.id = rm.menu_id
+        <where>
+            r.del_flag!='1'
+            <if test="roleName!=null and roleName!=''">
+                and r.role_name like CONCAT('%',#{roleName},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertManyRoleMenu">
+        insert into roles_menus (role_id,menu_id) values
+        <foreach collection="menuList" separator="," item="menu">
+            (#{id},#{menu.id})
+        </foreach>
+    </insert>
+
+
+
+</mapper>
