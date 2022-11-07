@@ -1,0 +1,23 @@
+nohup: ignoring input
+[W 2022-09-26 14:02:23.828 LabApp] 'allow_root' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2022-09-26 14:02:23.828 LabApp] 'iopub_data_rate_limit' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2022-09-26 14:02:23.828 LabApp] 'iopub_data_rate_limit' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[I 2022-09-26 14:02:23.853 LabApp] JupyterLab extension loaded from E:\3Mathcode\Enviroment\Anaconda\lib\site-packages\jupyterlab
+[I 2022-09-26 14:02:23.853 LabApp] JupyterLab application directory is E:\3Mathcode\Enviroment\Anaconda\share\jupyter\lab
+[I 14:02:23.872 NotebookApp] The port 8888 is already in use, trying another port.
+[I 14:02:23.876 NotebookApp] Serving notebooks from local directory: E:\OneDrive - University of Macau\Jupyter-wkspce
+[I 14:02:23.876 NotebookApp] Jupyter Notebook 6.4.8 is running at:
+[I 14:02:23.876 NotebookApp] http://localhost:8889/?token=7a175c03e03fe44b061be6a293eab0b2c44b7bbbdc34253c
+[I 14:02:23.876 NotebookApp]  or http://127.0.0.1:8889/?token=7a175c03e03fe44b061be6a293eab0b2c44b7bbbdc34253c
+[I 14:02:23.876 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 14:02:24.235 NotebookApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///C:/Users/MiHsi/AppData/Roaming/jupyter/runtime/nbserver-57032-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8889/?token=7a175c03e03fe44b061be6a293eab0b2c44b7bbbdc34253c
+     or http://127.0.0.1:8889/?token=7a175c03e03fe44b061be6a293eab0b2c44b7bbbdc34253c
+[W 14:02:28.244 NotebookApp] 404 GET /fonts/element-icons.woff (::1) 17.950000ms referer=http://localhost:8889/tree?token=7a175c03e03fe44b061be6a293eab0b2c44b7bbbdc34253c
+[W 14:02:28.274 NotebookApp] 404 GET /fonts/element-icons.ttf (::1) 3.980000ms referer=http://localhost:8889/tree?token=7a175c03e03fe44b061be6a293eab0b2c44b7bbbdc34253c
+[I 14:03:22.219 NotebookApp] Kernel started: 98c9d96d-e299-429b-b862-64b2085fd440, name: python3
+[IPKernelApp] WARNING | Parent appears to have exited, shutting down.
