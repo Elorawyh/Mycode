@@ -116,10 +116,10 @@ wait = WebDriverWait(driver, 3) # 抢购版  # 好像正常也能用，那干脆
 def login():
         # account
         t_username = driver.find_element(By.ID,'email')
-        t_username.send_keys('')
+        t_username.send_keys('mc25661@um.edu.mo')
         # password
         t_password = driver.find_element(By.ID,'password')
-        t_password.send_keys('')
+        t_password.send_keys('315315')
         # login
         t_login = driver.find_element(By.XPATH,"//button[@class='btn btn-primary']")
         t_login.click()
